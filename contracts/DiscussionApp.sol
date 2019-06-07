@@ -4,12 +4,12 @@ import "@aragon/os/contracts/apps/AragonApp.sol";
 import "@aragon/os/contracts/lib/math/SafeMath.sol";
 
 
-contract CounterApp is AragonApp {
+contract DiscussionApp is AragonApp {
     using SafeMath for uint256;
 
     event Post(address indexed author, string postCid, string discussionId, uint postId, uint createdAt);
     event Edit(address indexed author);
-    event Hide(address indexed author);
+    event Hide(address indexed author, string discussionId, uint indexed postId, uint hiddenAt);
 
     bytes32 constant public DISCUSSION_POSTER_ROLE = keccak256("DISCUSSION_POSTER_ROLE");
 

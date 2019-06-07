@@ -10,3 +10,5 @@ hacks
 ```
 
 to get js ipfs to work in browser
+
+If you pass author as a param in each function call, how do you ensure that the author is also the msg.sender without using msg sender? How can we prevent people from spoofing their author without using msg sender
