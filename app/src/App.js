@@ -10,6 +10,7 @@ function App() {
   const { syncing } = appState
 
   const [text, setText] = useState('')
+  const [id, setId] = useState(-1)
 
   console.log('APP STATE', appState)
   const post = async () => {
@@ -30,14 +31,35 @@ function App() {
     }
   }
 
+  const hide = async () => {
+    try {
+      await api.hide(connectedAccount, id, '123').toPromise()
+      setId(-1)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   return (
     <Main>
       <BaseLayout>
         {syncing && <Syncing />}
-        <TextInput value={text} onChange={e => setText(e.target.value)} />
+        <TextInput
+          placeholder="write a discussion"
+          value={text}
+          onChange={e => setText(e.target.value)}
+        />
+        <TextInput.Number
+          placeholder="enter post ID to hide"
+          value={id}
+          onChange={e => setId(Number(e.target.value))}
+        />
         <Buttons>
           <Button mode="secondary" onClick={post}>
             Make post
+          </Button>
+          <Button mode="secondary" onClick={hide}>
+            Hide post
           </Button>
         </Buttons>
       </BaseLayout>

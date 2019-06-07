@@ -29,7 +29,7 @@
   },
   "scripts": {
     "devchain:reset": "aragon devchain  --reset",
-    "clean": "aragon clean",
+    "clean:start": "aragon clean && rm -rf ~/.aragon && rm -rf dist && rm -rf build && npm run start:http:template",
     "start": "npm run start:ipfs",
     "start:ipfs": "aragon run",
     "start:http": "aragon run --http localhost:8001 --http-served-from ./dist",

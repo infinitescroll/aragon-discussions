@@ -17,12 +17,16 @@ import { ipfs } from '../ipfs'
 
 */
 
-export const updateState = (action, state, event) => {
-  if (action === 'Post') return handlePost(state, event)
-  return state
+export const handleHide = async (
+  state,
+  { returnValues: { author, discussionId, postId, hiddenAt } }
+) => {
+  const newState = cloneDeep(state)
+  delete newState.discussions[discussionId][postId]
+  return newState
 }
 
-const handlePost = async (
+export const handlePost = async (
   state,
   { returnValues: { author, createdAt, discussionId, postId, postCid } }
 ) => {
