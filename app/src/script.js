@@ -16,12 +16,11 @@ api.store(
         newState = { ...initialState, syncing: false }
         break
       case 'Post':
-        newState = updateState('Post', state, event)
+        newState = await updateState('Post', state, event)
         break
       default:
         newState = state
     }
-
     return newState
   },
   [

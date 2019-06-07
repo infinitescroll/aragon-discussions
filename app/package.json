@@ -8,6 +8,7 @@
     "@aragon/ui": "^0.32.0",
     "@babel/polyfill": "^7.2.5",
     "ipfs-http-client": "^32.0.1",
+    "lodash.clonedeep": "^4.5.0",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "rxjs": "^6.2.1",

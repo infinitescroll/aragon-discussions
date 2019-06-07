@@ -7,7 +7,7 @@ import "@aragon/os/contracts/lib/math/SafeMath.sol";
 contract CounterApp is AragonApp {
     using SafeMath for uint256;
 
-    event Post(address indexed author, string postCid, string discussionId, uint createdAt);
+    event Post(address indexed author, string postCid, string discussionId, uint postId, uint createdAt);
     event Edit(address indexed author);
     event Hide(address indexed author);
 
@@ -17,8 +17,8 @@ contract CounterApp is AragonApp {
         address author;
         string postCid;
         string discussionId;
+        uint id;
         uint createdAt;
-        uint discussionPostId;
     }
 
     mapping(address => DiscussionPost[]) public posts;
@@ -33,9 +33,9 @@ contract CounterApp is AragonApp {
         post.postCid = postCid;
         post.discussionId = discussionId;
         post.createdAt = now;
-        uint discussionPostId = posts[author].length;
-        post.discussionPostId = discussionPostId;
+        uint postId = posts[author].length;
+        post.id = postId;
         posts[author].push(post);
-        emit Post(author, postCid, discussionId, now);
+        emit Post(author, postCid, discussionId, postId, now);
     }
 }

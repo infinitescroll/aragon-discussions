@@ -2,12 +2,8 @@ import React, { useState } from 'react'
 import { useAragonApi } from '@aragon/api-react'
 import { Main, Button, TextInput } from '@aragon/ui'
 import styled from 'styled-components'
-import ipfsClient from 'ipfs-http-client'
-const ipfs = ipfsClient({
-  host: 'ipfs.autark.xyz',
-  port: '5001',
-  protocol: 'https',
-})
+
+import { ipfs } from './ipfs'
 
 function App() {
   const { api, appState, connectedAccount } = useAragonApi()
@@ -15,6 +11,7 @@ function App() {
 
   const [text, setText] = useState('')
 
+  console.log('APP STATE', appState)
   const post = async () => {
     const discussionPost = {
       author: connectedAccount,
@@ -39,10 +36,6 @@ function App() {
         {syncing && <Syncing />}
         <TextInput value={text} onChange={e => setText(e.target.value)} />
         <Buttons>
-          {/* <Button
-            mode="secondary"
-            onClick={() => api.post(connectedAccount, 'xsqu', '123')}
-          > */}
           <Button mode="secondary" onClick={post}>
             Make post
           </Button>
